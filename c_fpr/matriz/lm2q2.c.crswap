@@ -1,0 +1,75 @@
+#include <stdio.h>
+
+/*Dada uma matriz MLxC, onde L e C são constantes, desenvolver uma função que “troque” os elementos de duas colunas
+c1 e c2, respeitadas as seguintes regras:
+a. A troca só será possível se as colunas c1 e c2 existirem na matriz. Caso existam, a troca será realizada e o valor 1
+retornado pela função; por outro lado, 0 será retornado se uma ou as duas colunas forem inválidas;
+b. Após a troca, a coluna c2 conterá exatamente os elementos originais da coluna c1, na mesma ordem. Porém, os
+valores da coluna c1 serão os originais da c2, na ordem inversa.*/
+
+#define L 6
+#define C 5
+
+void trocar(int mat[L][C], int c1, int c2);
+
+int main(void)
+{
+    int i, j, c1, c2, mat[L][C]={{1,8,5,9,4},{2,5,4,6,5},{4,1,2,3,6},{4,5,5,8,7},{4,2,5,6,9},{9,0,8,3,5}};
+    for(i=0;i<L;i++)
+    {
+        for(j=0;j<C;j++)
+        {
+            printf("%d", mat[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("c1: ");
+    scanf("%d", &c1);
+
+    printf("c2: ");
+    scanf("%d", &c2);
+
+    trocar(mat, c1, c2);
+}
+
+void trocar(int mat[L][C], int c1, int c2)
+{
+    int i,j,aux=0,aux2=0,aux3=0,aux4=0,vet1[L],vet2[L];
+
+    if(c1>0 && c1<C && c2>0 && c2<C)
+    {
+        for(i=0;i<C;i++)
+        {
+            for(j=0;j<L;j++)
+            {
+                if(i==c1-1)
+                {
+                    printf("%d\n", mat[j][i]);
+                    vet1[aux]=mat[j][i];
+                    aux++;
+                }
+                if(i==c2-1)
+                {
+                    vet2[aux3]=mat[j][i];
+                    mat[j][i]=vet1[aux2];
+                    aux2++;
+                    aux3++;
+                    printf("%d\n", mat[j][i]);
+                }
+            }
+        }
+        for(i=0;i<C;i++)
+        {
+            for(j=0;j<L;j++)
+            {
+                if(i==c1-1)
+                {
+                    mat[j][i]=vet2[aux4];
+                    aux4++;
+                    printf("%d\n", mat[j][i]);
+                }
+            }
+        }
+    }
+}
